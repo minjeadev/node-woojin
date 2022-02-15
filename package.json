@@ -1,0 +1,44 @@
+{
+  "name": "node-woojin",
+  "version": "1.0.0",
+  "description": "woojin language.",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*/index.js"
+  },
+  "files": [
+    "dist",
+    "readme.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc-watch --onSuccess \"node dist/index.js\""
+  },
+  "keywords": [
+    "woojin",
+    "woojin-lang",
+    "woojinlang",
+    "programming-language"
+  ],
+  "author": "minjea.dev <minjea.dev@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minjeadev/node-woojin.git"
+  },
+  "dependencies": {
+    "commander": "^9.0.0",
+    "node-woojin": "^1.0.0",
+    "readline-sync": "^1.4.10",
+    "tsc-watch": "^4.6.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  },
+  "bugs": {
+    "url": "https://github.com/minjeadev/node-woojin/issues"
+  },
+  "homepage": "https://github.com/minjeadev/node-woojin#readme"
+}
