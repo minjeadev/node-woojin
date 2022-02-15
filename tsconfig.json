@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "ES2015",
+    "sourceMap": true,
+    "outDir": "dist"
+  },
+  "include": ["src/**/*", "dist/index.js", "dist/api/error.js"],
+  "exclude": ["node_modules"]
+}
