@@ -1,20 +1,30 @@
 # node-woojin
 
-node-woojin은 난해한 프로그래밍 언어로, 한글 키워드를 통하여 간단한 프로그램을 만들 수 있습니다
+한국인이신가요? 한국어 설명서를 보시려면 [여기를]](https://github.com/minjeadev/node-woojin/blob/main/README.md) 눌러 주세요!
 
-본 프로젝트는 엄랭을 보고 영감을 받아 시작된 프로젝트입니다.
+This project is a esoteric programming language, and you can create a simple program through Korean keywords. (This project was inspired by [umjunsik-lang](https://github.com/rycont/umjunsik-lang/) and started. )
 
-# 문법
+In the node.js environment, you can run the program as in the following example. Please insert the node-woojin code in the (code) part.
 
-모든 node-woojin 코드는 `나는 신우진이다`로 시작하여, `저는 이만..`으로 끝나야 합니다. 이를 지키지 않을 경우, 스크립트를 실행할수 없습니다.
+```js
+node_woojin = require("./dist/index");
 
-## 자료형
+node_woojin(`나는 신우진이다
 
-현재 구현된 자료형에는, `논리 자료형`과 `숫자 자료형`이 있습니다.
+(code)
 
-### 숫자 자료형
+저는 이만..`);
+```
 
-`:`과 `;`으로 숫자를 표현할수 있습니다. `:`는 +1을, `;`는 -1을 의미합니다.
+# Grammer
+
+All node-woojin codes must start with `나는 신우진이다` and end with `저는 이만..`. If you don't comply with this, you can't run the script.
+
+## Data Type
+
+### Number
+
+We can express numbers with `:` and `;`. `:` stands for +1, and `;` stands for -1.
 
 ```js
 :::: => +4
@@ -22,71 +32,118 @@ node-woojin은 난해한 프로그래밍 언어로, 한글 키워드를 통하�
 :;:; => 0
 ```
 
-### 논리 자료형
+### String
 
-`uglyguri`와 `beautifulguri`로 논리 자료형을 표현할수 있습니다.<br>
-
-`uglyguri` => guri는 현실에서 **못생겼으므로**, `true` 값을 가집니다.<br>
-`beautifulguri` => guri는 현실에서 못생겼으므로, 예쁘다는 말은 거짓이 됩니다. 따라서 `false` 값을 가집니다.
+You can express a character string with `"` (double quotation marks).
 
 ```js
+"woojin" => string "woojin".
+```
+
+If two or more strings are used in duplicate, the entire string will be ignored except first.
+
+```js
+"나""는""천""재" => "나"
+```
+
+You can declare an arrangement by putting elements inside `[]`. You can also put an array in the array.
+
+```js
+[;;;,::] => [-4, 2]
+[:::,;;,::::,:,[::,;;]] => [3,-2,4,1,[2,-2]]
+```
+
+At least two elements must be used unconditionally. If there is one element, or less, return an error.
+
+### Boolean
+
+You can express boolean with `uglyguri` and `beautifulguri`. (Guri is the younger brother of the developer.)<br>
+
+`uglyguri` => Since guri is ugly in reality, it has a true value.<br>
+`beautifulguri` => Since Guri is ugly in reality, the word pretty becomes false. Therefore, it has a false value.
+
+```tsc
 uglyguri => true;
 beautifulguri => false;
 ```
 
-## 변수
+## Variables
 
-### 선언하기
+### Declare
 
-`시`와 `인` 사이에 있는 `이`의 개수만큼, 인덱스가 정해집니다. 또한, 선언 후 바로 뒤에 오는 자료형을 변수에 대입합니다. 아무것도 없으면 0이 됩니다<br>
+### Non-name Variables
+
+The index is determined by the length of `이` between `시` and `인`. In addition, the data type immediately after the declaration is substituted into the variable. If there's nothing, it's 0.
 
 ```js
-시인 => 인덱스가 0인 변수 선언
-시이인;;; => 인덱스가 1, 값이 +3인 변수 선언
-시이이인uglyguri => 인덱스가 2, 값이 true인 변수 선언
+시인 => Declare a variable with index 0
+시이인;;; => Declare a variable with index 1 and value +3.
+시이이인uglyguri => Declare a variable with index 2 and value true
 ```
 
-### 가져오기
+### named Variables
 
-`우`의 개수를 세어, 해당하는 인덱스의 변수를 가져옵니다. 다만 해당하는 변수가 없을 경우, 에러가 반환됩니다.
+Variables can be declared in the form of `variable name := value`.
 
 ```js
-우 => 인덱스가 1인 변수 가져오기
-우우우우우우우우우 => 이런 인덱스의 변수는 선언하지 않았기에, SyantaxError 발생
+우진 := "woojin"
 ```
 
-눈치 채신것처럼 인덱스가 0인 변수는 못가져오도록 프로그래밍 되어있습니다. (시인 키워드로 변수가 선언되는게 마음에 안들었습니다(?))
+### Import
 
-## 콘솔
+### Non-name Variables
 
-### 출력
-
-`진`과 `!` 사이에 변수를 넣어 콘솔에 표시할수 있습니다
+Count the number of `우` to get the variable whose index is the number of `우`. However, if there is no corresponding variable, the error will be returned.
 
 ```js
-진우우! => 아까 선언한 true가 값인 변수가 콘솔에 표시됩니다.
+우 => Get a variable with an index of 1
+우우우우우우우우우 => Since variables with these indexes have not been declared, SyntaxError occurs.
 ```
 
-## 조건문
+As you noticed, it is programmed so that variables with index of 0 cannot be imported.
 
-`만약(조건)이라면(실행할문자)` 형식으로 조건문을 실행할수 있습니다. 또한, 조건에는 숫자나, 논리 자료형을 대입할수 있습니다. 다음 예시를 참고해보세요
+### named Variables
+
+You can just write the variable name you declared. If you try to get a variable that doesn't exist, an error occurs.
 
 ```js
-만약uglyguri이라면진:::! => uglyguri는 true 이므로, 콘솔에 +3 이 출력됩니다.
+우진 => "woojin"
+node_woojin => Since this variable has not been declared, SyantaxError occurred.
+```
+
+## Console
+
+### Print
+
+You can put a variable or data type between `진` and `!` and display it on the console.
+
+```js
+진우우! => The console displays a variable with the value is true declared earlier.
+진우진! => The console displays a variable with the value is "woojin" declared earlier.
+```
+
+You can't print out `array` type.
+
+## Conditional statements
+
+You can execute conditional statements in the form of `만약(conditional)이라면(the grammar to be executed if the condition is true)`. Also, you can substitute numbers or boolean data types for conditions. Please refer to the next example.
+
+```js
+만약uglyguri이라면진:::! => uglyguri is a true So, +3 is output to the console.
 ```
 
 ## eval
 
-자바스크립트의 각주인 `//`를 node-woojin에서 사용하지 마세요. `//` 뒤에 오는 문자열은 eval로 처리됩니다.
+Do not use the footnote of JavaScript, '//', in node-woojin, The string following a `//` is treated as eval.
 
 ```js
-// throw new Error("퍼킹 크레이지")
+// throw new Error("wow You Can Really Dance.")
 ```
 
-위 문법은 자바스크립트 이발로 다음과 같이 처리됩니다.
+The above grammar is treated as follows with JavaScript eval.
 
 ```js
-throw new Error("퍼킹 크레이지");
+throw new Error("wow You Can Really Dance.");
 ```
 
-못알아듣겠다면 한번 실행해 보세요
+If you don't understand, try it.
