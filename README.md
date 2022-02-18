@@ -1,6 +1,6 @@
 # node-woojin
 
-한국인이신가요? 한국어 설명서를 보시려면 [여기를]](https://github.com/minjeadev/node-woojin/blob/main/README.md) 눌러 주세요!
+한국인이신가요? 한국어 설명서를 보시려면 [여기를](https://github.com/minjeadev/node-woojin/blob/main/README.md) 눌러 주세요!
 
 This project is a esoteric programming language, and you can create a simple program through Korean keywords. (This project was inspired by [umjunsik-lang](https://github.com/rycont/umjunsik-lang/) and started. )
 
