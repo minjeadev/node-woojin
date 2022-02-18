@@ -7,7 +7,7 @@ This project is a esoteric programming language, and you can create a simple pro
 In the node.js environment, you can run the program as in the following example. Please insert the node-woojin code in the (code) part.
 
 ```js
-node_woojin = require("./dist/index");
+node_woojin = require("node-woojin");
 
 node_woojin(`나는 신우진이다
 
