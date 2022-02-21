@@ -1,5 +1,5 @@
 import { WoojinlangError } from '../api/error';
-const cannotPrintables = ["array"];
+const cannotPrintables = ["array","object"];
 
 export class Console {
   static Print(t: string, v: any) {
