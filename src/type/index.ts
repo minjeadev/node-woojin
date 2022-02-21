@@ -29,7 +29,7 @@ export class Types {
         let trues = x.split("uglyguri").length - 1;
         if ((trues == 1 && falses == 0) || (trues == 0 && falses == 1)) {
           let bindex = ["uglyguri", "beautifulguri"].indexOf(x)
-          let value = (bindex == 0) ? true : (bindex == 0) ? false : undefined;
+          let value = (bindex == 0) ? true : (bindex == 1) ? false : undefined;
           return { type: "bool", value: value }
         } else {
           throw WoojinlangError.SYNTAX_ERROR("논리 자료형은 중복되어서는 안됩니다.")
