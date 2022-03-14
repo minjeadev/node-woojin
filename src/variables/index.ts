@@ -41,6 +41,7 @@ export class Variable{
 
   // 이름있는 변수 생성 함수 (이름:=값)
   static async setNamedVar(vname: string, vval: string) {
+    if(vname.includes(" ")) throw WoojinlangError.SYNTAX_ERROR("변수 이름에는 공백이 포함되어서는 안됩니다.")
     for (let i = 0; i < words.reserved.length; i++) {
       if (vname.startsWith(words.reserved[i])) throw WoojinlangError.SYNTAX_ERROR("변수명이 시작할수 없는 단어로 시작하였습니다");
     }
