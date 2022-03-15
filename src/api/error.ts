@@ -1,4 +1,6 @@
 export class WoojinlangError {
+  private version = "v1.0.0"
+
   static Error = (message:string) => {
     let err = new Error(message);
     err.name = 'WoojinError';
